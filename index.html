@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <title>form</title>
+</head>
+
+<body>
+    <h1><b>To Do List</h1>
+    <div id="mydiv"></div>
+
+    <input type="text" id="name" value="" name="uname" placeholder="Enter your name" />
+    <input type="button" id="btn" value="Add" />
+    <!-- <input type="button" id="del" name="Delete" value="Delete" /> <br></br> -->
+
+
+    <table border="1" id="mytable">
+        <tr id="row">
+            <th>Name</th>
+            <th>Action</th><br></br>
+            <!-- <td id="col"><input type="button" onclick ="disp()" name="Edit" value="Edit"></td>
+            <td>delete</td></tr> -->
+        </tr>
+
+    </table>
+
+    <script>
+
+        "use strict";
+
+        function disp(e) {
+            if (inputText.value == '') {
+                alert("Please enter a name");
+            }
+            else {
+                var row = table.insertRow(1);
+                var column = row.insertCell(0);
+                var columnedit = row.insertCell();
+                var columndel = row.insertCell();
+                column.innerHTML = inputText.value;
+                var arr=[inputText.value,columnedit, columndel];
+                console.log(arr);
+                columnedit.innerHTML = '<button id="edit">Edit</button>';
+                columndel.innerHTML = '<button id="delcol">Delete</button>';
+                var deleteCol = document.getElementById("delcol");
+                deleteCol.addEventListener("click", del);
+
+
+                inputText.value = '';
+
+
+            }
+
+        }
+
+        function del() {
+            alert("are you sure?");
+            table.deleteRow(1);
+            //inputText.value = '';
+        }
+
+        function enter(e){
+
+            if(event.key==="Enter")
+            document.getElementById("btn").click();
+        }
+
+        var table = document.getElementById("mytable");
+        var div = document.getElementById("mydiv");
+        var inputText = document.getElementById("name");
+        var deleteBtn = document.getElementById("del");
+
+        var btn = document.getElementById("btn");
+        btn.addEventListener("click", disp);
+        inputText.addEventListener("keypress", enter);
+        deleteBtn.addEventListener("click", del);
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
